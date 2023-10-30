@@ -19,17 +19,17 @@ TANGGAL=$(date '+%Y-%m-%d')
 TIMES="10"
 NAMES=$(whoami)
 IMP="wget -q -O"    
-CHATID="1962241851"
+CHATID="5879214876"
 LOCAL_DATE="/usr/bin/"
 MYIP=$(wget -qO- ipinfo.io/ip)
 ISP=$(wget -qO- ipinfo.io/org)
 CITY=$(curl -s ipinfo.io/city)
 TIME=$(date +'%Y-%m-%d %H:%M:%S')
 RAMMS=$(free -m | awk 'NR==2 {print $2}')
-KEY="6340999133:AAG6cgp1Yc522EKc7N-T3xDzI2UW3VYThm0"
+KEY="6688852810:AAEKijkqZeqwO0pfkWqkYUM4RJq9myw30ZQ"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 REPO="https://raw.githubusercontent.com/kingstores/scupdate/main/"
-CDNF="https://raw.githubusercontent.com/kingstores/scupdate/main"
+CDNF="https://raw.githubusercontent.com/kingstores/scupdate/main/"
 APT="apt-get -y install "
 domain=$(cat /root/domain)
 start=$(date +%s)
@@ -127,6 +127,17 @@ function dir_xray() {
     touch /etc/shadowsocks/.shadowsocks.db
     touch /etc/bot/.bot.db
     clear
+}
+### install bot
+function resbot() {
+apt update && apt upgrade
+apt install python3 python3-pip git
+cd /usr/bin
+wget https://raw.githubusercontent.com/kingstores/vps/main/bot/adminbot.zip
+unzip adminbot.zip
+chmod +x /usr/bin/*
+clear
+pip3 install -r adminbot/requirements.txt
 }
 
 ### Tambah domain
@@ -521,7 +532,7 @@ function finish(){
 <code>USER      : </code><code>${NAMES}</code>
 <code>RAM       : </code><code>${RAMMS}MB</code>
 <code>LINUX     : </code><code>${OS}</code>
-🔰@ARI_VPN_STORE
+🔰@CandraVpnz
 "
     curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
     cp /etc/openvpn/*.ovpn /var/www/html/
